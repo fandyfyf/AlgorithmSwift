@@ -5,23 +5,23 @@ class Solution {
         return ret
     }
     
-    func dfs(_ list: inout [[Int]], _ path: [Int], _ index: Int, _ n: Int, _ k: Int) {
+    func dfs(_ list: inout [[Int]], _ sequence: [Int], _ searchIndex: Int, _ n: Int, _ k: Int) {
         
-        if path.count == k {
-            list.append(path)
+        if sequence.count == k {
+            list.append(sequence)
             return
         }
         
 	// To avoid upper bound < lower bound
-        if index > n {
+        if searchIndex > n {
             return
         }
             
-        for i in index...n {
-            var updatedPath = Array(path)
-            updatedPath.append(i);
+        for i in searchIndex...n {
+            var updatedSequence = Array(sequence)
+            updatedSequence.append(i);
             
-            dfs(&list, updatedPath, i+1, n, k)
+            dfs(&list, updatedSequence, i+1, n, k)
         }
     }
 }
