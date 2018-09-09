@@ -1,6 +1,7 @@
 class Solution {
     func ladderLength(_ beginWord: String, _ endWord: String, _ wordList: [String]) -> Int {
 
+        // Edge case, make sure the endWord is included in the wordList
         if !wordList.contains(endWord) {
             return 0
         }
@@ -14,17 +15,20 @@ class Solution {
         var length = 1
 
         while queue.count != 0 {
-
+            
+            // Doing BFS, one character change at a time
             for _ in 0..<queue.count {
 
                 let str = queue.removeFirst()
 
+                // Iterate through all the words, this might be time consuming
                 for word in wordList {
 
                     if visited.contains(word) {
                         continue
                     }
 
+                    // If a word is a valid transform
                     if isValidTransform(word, str) {
 
                         if word == endWord {
