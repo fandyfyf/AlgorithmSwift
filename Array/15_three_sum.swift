@@ -1,5 +1,5 @@
 // 15. Three Sum
-class ThreeSum {
+class Solution {
     func threeSum(_ nums: [Int]) -> [[Int]] {
 
         var ret = [[Int]]()
@@ -10,7 +10,6 @@ class ThreeSum {
         // O(NLogN)
         let sortedNums = nums.sorted()
 
-        // O(N^2)
         for i in 0...sortedNums.count-1 {
 
             if i-1 >= 0 && sortedNums[i] == sortedNums[i-1] {
@@ -35,16 +34,14 @@ class ThreeSum {
                     right -= 1
                 } else {
                     // total equals zero
+                    // should avoid duplicates
                     ret.append([first, second, third])
 
-                    // should avoid duplicates
-                    left += 1
-                    while left < right && sortedNums[left-1] == sortedNums[left] {
+                    while left < right && sortedNums[left] == second {
                         left += 1
                     }
 
-                    right -= 1
-                    while left < right && sortedNums[right+1] == sortedNums[right] {
+                    while left < right && sortedNums[right] == third {
                         right -= 1
                     }
                 }
